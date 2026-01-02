@@ -1,0 +1,255 @@
+/* ====== Base ====== */
+* { box-sizing: border-box; }
+
+:root{
+  --paper: #f9f9e1;
+  --ink: #1d1a16;
+  --border: #2b2b2b;
+  --shadow: 6px 6px 0 rgba(0,0,0,.25);
+  --gap: 16px;
+}
+
+body{
+  margin: 0;
+  color: var(--ink);
+  font-family: Georgia, serif;
+  background:
+    radial-gradient(circle at 12px 12px, rgba(0,0,0,.05) 2px, transparent 3px) 0 0 / 24px 24px,
+    #e5dcff;
+  line-height: 1.6;
+}
+
+a{ color: inherit; }
+a:hover{ text-decoration: none; }
+
+/* امنعي الصور/الفيديو من كسر عرض الصفحة */
+img, video{
+  max-width: 100%;
+  height: auto;
+}
+
+/* ====== Layout ====== */
+.page{
+  max-width: 1100px;
+  margin: 24px auto;
+  padding: 0 20px;
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: var(--gap);
+}
+
+/* ====== Boxes ====== */
+.box{
+  background: var(--paper);
+  border: 2px solid var(--border);
+  box-shadow: var(--shadow);
+  padding: 14px;
+}
+
+.small{ font-size: .92rem; opacity: .9; }
+
+h1,h2{
+  margin: 0 0 10px;
+  letter-spacing: .5px;
+  text-align: center;
+}
+
+.hero h1{ font-size: 1.3rem; }
+.hero p{ margin: 0; text-align: center; }
+
+/* ====== Sidebar ====== */
+.sidebar{
+  position: sticky;
+  top: 18px;
+  align-self: start;
+  display: grid;
+  gap: var(--gap);
+}
+
+.links{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.links li{ margin: 6px 0; }
+
+.badge{
+  width: 46px;
+  height: 46px;
+  border: 2px solid var(--border);
+  display: grid;
+  place-items: center;
+  margin: 8px auto 0;
+  background: #fff;
+}
+
+/* ====== Masonry (stacked columns) ====== */
+.masonry{
+  column-count: 3;
+  column-gap: var(--gap);
+}
+
+@media (max-width: 1100px){
+  .masonry{ column-count: 2; }
+}
+
+@media (max-width: 650px){
+  .masonry{ column-count: 1; }
+}
+
+.card{
+  break-inside: avoid;
+  margin: 0 0 var(--gap);
+}
+
+/* ====== Cute imperfections ====== */
+.tilt{ transform: rotate(-0.7deg); }
+.tilt2{ transform: rotate(0.9deg); }
+
+.thumb{
+  width: 100%;
+  display: block;
+  border: 2px solid var(--border);
+  margin-top: 10px;
+}
+
+/* ====== Lists ====== */
+.bullets{
+  margin: 0;
+  padding-right: 18px;
+}
+
+/* ====== Mini gallery ====== */
+.grid{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.grid img{
+  width: 100%;
+  display: block;
+  border: 2px solid var(--border);
+  background: #fff;
+}
+
+/* ====== Footer ====== */
+.footer{
+  margin-top: var(--gap);
+  text-align: center;
+}
+
+/* ===== Intro Page (Centered & Clean) ===== */
+.intro-body{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    radial-gradient(circle at 12px 12px, rgba(0,0,0,.06) 2px, transparent 3px)
+    0 0 / 24px 24px,
+    #fddcff;
+  font-family: Georgia, serif;
+  padding: 16px; /* يساعد بالجوال */
+}
+
+.intro-wrapper{
+  background: #f9ffdc;
+  border: 2px solid #000;
+  box-shadow: 8px 8px 0 rgba(0,0,0,.25);
+  padding: 40px 50px;
+  text-align: center;
+  max-width: 420px;
+  width: 100%;
+}
+
+.intro-title{
+  margin: 0 0 16px;
+  font-size: 1.3rem;
+  letter-spacing: 2px;
+}
+
+.intro-text{
+  margin: 0 0 28px;
+  line-height: 1.8;
+  font-size: .95rem;
+}
+
+/* مربع الزر */
+.enter-btn{
+  display: inline-block;
+  padding: 14px 28px;
+  border: 2px solid #000;
+  background: #9bc4e0;
+  box-shadow: 4px 4px 0 #000;
+  text-decoration: none;
+  font-size: .95rem;
+  transition: .15s ease;
+}
+
+.enter-btn:hover{
+  transform: translate(2px,2px);
+  box-shadow: 2px 2px 0 #000;
+}
+
+/* ===== Responsive (Tablet & Mobile) ===== */
+
+/* تابلت وشاشات متوسطة */
+@media (max-width: 900px){
+  .page{
+    grid-template-columns: 1fr;
+  }
+  .sidebar{
+    position: static;
+    top: auto;
+  }
+}
+
+/* جوال */
+@media (max-width: 650px){
+  .page{
+    margin: 14px auto;
+    padding: 0 12px;
+    gap: 12px;
+  }
+
+  :root{
+    --shadow: 4px 4px 0 rgba(0,0,0,.22);
+  }
+
+  .box{
+    padding: 12px;
+  }
+
+  /* الميلان بالجوال ممكن يسبب قص/اهتزاز */
+  .tilt, .tilt2{
+    transform: none;
+  }
+
+  .hero h1{
+    font-size: 1.1rem;
+  }
+}
+
+/* انترو للجوال الصغير */
+@media (max-width: 480px){
+  .intro-wrapper{
+    width: min(92vw, 420px);
+    padding: 26px 18px;
+  }
+
+  .intro-title{
+    font-size: 1.15rem;
+  }
+
+  .intro-text{
+    font-size: .9rem;
+  }
+
+  .enter-btn{
+    width: 100%;
+    padding: 14px 0;
+  }
+}
